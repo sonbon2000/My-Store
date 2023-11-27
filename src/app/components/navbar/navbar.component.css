@@ -1,0 +1,14 @@
+.navbar {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+.product-link {
+    margin-right: 20px;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: underline;
+}
