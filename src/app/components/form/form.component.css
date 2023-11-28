@@ -1,0 +1,11 @@
+.form-reactive {
+    display: flex;
+    flex-direction: column;
+}
+label {
+    margin: 10px 0;
+}
+
+.btn-submit {
+    margin-top: 20px;
+}

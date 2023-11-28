@@ -1,1 +1,28 @@
-<p>cart works!</p>
+<div class="container">
+  <div class="product-item" *ngIf="cartProducts.length > 0">
+    <div *ngFor="let cartProduct of cartProducts" class="product-item-content">
+      <img src="{{ cartProduct.imagesUrl }}" alt="" class="product-img" />
+      <p>{{ cartProduct.title }}</p>
+      <p>${{ cartProduct.price }}</p>
+      <div class="product-amount">
+        <p>Amount:</p>
+        <select
+          class="product-select"
+          (change)="changeAmount(cartProduct.id, $event)"
+        >
+          <option
+            *ngFor="let option of productOption"
+            [ngValue]="option"
+            [selected]="option === cartProduct.option"
+          >
+            {{ option }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <h1 class="product-total">Total price :${{ totalPrice }}</h1>
+  </div>
+  <div class="product-form">
+    <app-form (submitSuccess)="submitForm($event)"></app-form>
+  </div>
+</div>
