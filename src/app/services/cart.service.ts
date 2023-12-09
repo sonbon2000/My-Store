@@ -7,44 +7,45 @@ import { Product } from '../models/Product';
   providedIn: 'root',
 })
 export class CartService {
-  listCart: Cart[] = [];
+  cartList: Cart[] = [];
   dataSave!: DataUserSave;
   constructor() {}
 
+  // handle Add product
   addToCart(product: Product, amount: number): Cart[] | null {
     if (!amount) {
       return null;
     }
-    const findIdxProduct = this.listCart.findIndex(
+    const findIdxProduct = this.cartList.findIndex(
       (ele) => ele.id === product.id && ele.name === product.name
     );
     if (findIdxProduct === -1) {
-      this.listCart.push({ ...product, amount });
+      this.cartList.push({ ...product, amount });
     } else {
-      this.listCart = this.listCart.map((ele) => {
+      this.cartList = this.cartList.map((ele) => {
         if (ele.id === product.id && ele.name === product.name)
           return { ...ele, amount: ele.amount + amount };
         return ele;
       });
     }
-    return this.listCart;
+    return this.cartList;
   }
 
   // get Product from cart
   getListCart(): Cart[] {
-    return this.listCart;
+    return this.cartList;
   }
 
   // update CartProduct if change amount
   updateListCart(cartList: Cart[]): Cart[] {
-    this.listCart = cartList;
-    return this.listCart;
+    this.cartList = cartList;
+    return this.cartList;
   }
 
   // delete Product from cart if cart == 0
   deleteCart(id: Number): Cart[] {
-    const listCartEdit = this.listCart.filter((ele) => ele.id !== id);
-    this.listCart = listCartEdit;
+    const listCartEdit = this.cartList.filter((ele) => ele.id !== id);
+    this.cartList = listCartEdit;
     return listCartEdit;
   }
 

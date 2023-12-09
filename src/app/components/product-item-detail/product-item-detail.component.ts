@@ -21,6 +21,7 @@ export class ProductItemDetailComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.productId = this.activateRoute.snapshot.params['id'];
+    // get Product by id
     this.productService
       .getListProductById(Number(this.productId))
       .subscribe((product) => {
@@ -30,7 +31,7 @@ export class ProductItemDetailComponent implements OnInit {
       });
   }
 
-  addToCart() {
+  addProductToCart() {
     alert('Item has been added to cart');
     this.cartService.addToCart(this.productDetail, Number(this.productAmount));
   }

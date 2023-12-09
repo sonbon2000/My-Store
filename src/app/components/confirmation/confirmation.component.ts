@@ -10,14 +10,13 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ConfirmationComponent implements OnInit {
   data!: DataUserSave;
-  constructor(
-    private router: Router,
-    private cartService: CartService,
-  ) {}
+  constructor(private router: Router, private cartService: CartService) {}
+
   ngOnInit(): void {
     this.data = this.cartService.getDataSave();
   }
-  back() {
+
+  onClickBack() {
     this.router.navigateByUrl('/products');
   }
 }
