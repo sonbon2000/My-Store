@@ -1,4 +1,4 @@
-<div class="cart-container" *ngIf="listCart.length != 0">
+<div class="cart-container" *ngIf="listCart.length != 0; else noCart">
   <div class="cart-item-details">
     <div class="cart-item" *ngFor="let cart of listCart">
       <div>
@@ -63,6 +63,8 @@
   </form>
 </div>
 
-<h1 class="empty-cart-message" *ngIf="listCart.length == 0">
-  There is no product on cart!
-</h1>
+<ng-template #noCart>
+  <h1 class="empty-cart-message" *ngIf="listCart.length == 0">
+    There is no product on cart!
+  </h1>
+</ng-template>
