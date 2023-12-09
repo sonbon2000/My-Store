@@ -12,7 +12,7 @@
           <input
             type="number"
             [value]="cart?.amount"
-            (change)="changeAmount($event, cart.id)"
+            (ngModelChange)="changeAmount($event, cart.id)"
             class="number-input"
           />
         </div>
