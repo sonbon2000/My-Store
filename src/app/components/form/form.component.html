@@ -1,0 +1,94 @@
+<form #form="ngForm">
+  <div>
+    <p>Full name</p>
+    <input
+      placeholder="(minimum 6 characters)"
+      ngModel
+      name="fullName"
+      required
+      minlength="6"
+      class="form-input"
+    />
+
+    <span
+      class="msg-validate"
+      *ngIf="
+          form.controls?.['fullName']?.errors?.['required'] &&
+          form.controls?.['fullName']?.touched
+        "
+    >
+      Full name is required!
+    </span>
+
+    <span
+      class="msg-validate"
+      *ngIf="
+          form.controls?.['fullName']?.errors?.['minlength'] &&
+          form.controls?.['fullName']?.touched
+        "
+    >
+      Please enter name min 3 characters
+    </span>
+  </div>
+
+  <div>
+    <p>Address</p>
+    <input
+      placeholder="(mimimum 12 characters)"
+      ngModel
+      name="address"
+      required
+      minlength="12"
+      class="form-input"
+    />
+    <span
+      class="msg-validate"
+      *ngIf="
+          form.controls?.['address']?.errors?.['required'] &&
+          form.controls?.['address']?.touched
+        "
+    >
+      Address is required!
+    </span>
+
+    <span
+      class="msg-validate"
+      *ngIf="
+          form.controls?.['address']?.errors?.['minlength'] &&
+          form.controls?.['address']?.touched
+        "
+    >
+      Please enter address min 12 characters
+    </span>
+  </div>
+  <div>
+    <p>Credit card number</p>
+    <input
+      placeholder="(16-digit number)"
+      ngModel
+      name="creditCard"
+      class="form-input"
+      required
+    />
+    <span
+      class="msg-validate"
+      *ngIf="
+          form.controls?.['creditCard']?.errors?.['required'] &&
+          form.controls?.['creditCard']?.touched
+        "
+    >
+      Credit card is required
+    </span>
+  </div>
+
+  <div>
+    <button
+      class="btn"
+      [disabled]="form.invalid"
+      type="submit"
+      (click)="onSubmit(form.value)"
+    >
+      Submit
+    </button>
+  </div>
+</form>

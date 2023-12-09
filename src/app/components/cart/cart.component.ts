@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Cart } from 'src/app/models/cart';
 import { CartService } from 'src/app/services/cart.service';
@@ -13,23 +12,10 @@ export class CartComponent implements OnInit {
   listCart: Cart[] = [];
   submitForm: any = {};
 
-  constructor(
-    private cartService: CartService,
-    private router: Router,
-    private fb: FormBuilder
-  ) {}
+  constructor(private cartService: CartService, private router: Router) {}
   ngOnInit(): void {
     this.listCart = this.cartService.getListCart();
-    this.createForm();
     this.calculateTotalPrice();
-  }
-
-  createForm() {
-    this.submitForm = this.fb.group({
-      fullName: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      creditCard: ['', [Validators.required]],
-    });
   }
 
   changeAmount(event: Event, id: Number) {

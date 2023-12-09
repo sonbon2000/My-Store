@@ -21,46 +21,9 @@
     <h2>Total:${{ calculateTotalPrice() }}</h2>
   </div>
 
-  <form [formGroup]="submitForm">
-    <div>
-      <p>Full name</p>
-      <input
-        name="fullName"
-        formControlName="fullName"
-        class="form-input"
-        placeholder="Please enter required field"
-      />
-    </div>
-
-    <div>
-      <p>Address</p>
-      <input
-        placeholder="Please enter required field"
-        formControlName="address"
-        name="address"
-        class="form-input"
-      />
-    </div>
-    <div>
-      <p>Credit card number</p>
-      <input
-        placeholder="Please enter required field"
-        formControlName="creditCard"
-        name="creditCard"
-        class="form-input"
-      />
-    </div>
-    <div>
-      <button
-        class="btn"
-        [disabled]="!submitForm.valid"
-        type="submit"
-        (click)="onSubmit(submitForm.value)"
-      >
-        Submit
-      </button>
-    </div>
-  </form>
+  <div>
+    <app-form (submitForm)="onSubmit($event)"></app-form>
+  </div>
 </div>
 
 <ng-template #noCart>

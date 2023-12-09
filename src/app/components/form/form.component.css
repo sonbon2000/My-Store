@@ -1,0 +1,21 @@
+p.placeholder {
+  color: #999;
+  font-style: italic;
+  font-size: small;
+}
+.form-input {
+  display: inline-block;
+  width: 350px;
+  height: 34px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.msg-validate {
+  display: block;
+  color: red !important;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+}
