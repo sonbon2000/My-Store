@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CartProduct } from 'src/app/models/CartProduct';
-import { ProductService } from 'src/app/services/product.service';
+import { Cart } from 'src/app/models/cart';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,42 +10,58 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  cartProducts: CartProduct[] = [];
-  totalPrice: number = 0;
-  productOption: string[] = ['1', '2', '3', '4', '5'];
-  constructor(private productService: ProductService, private router: Router) {}
+  listCart: Cart[] = [];
+  submitForm: any = {};
 
+  constructor(
+    private cartService: CartService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
   ngOnInit(): void {
-    this.cartProducts = this.productService.getProductInCart();
+    this.listCart = this.cartService.getListCart();
+    this.createForm();
+    this.calculateTotalPrice();
+  }
+
+  createForm() {
+    this.submitForm = this.fb.group({
+      fullName: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      creditCard: ['', [Validators.required]],
+    });
+  }
+
+  changeAmount(event: Event, id: Number) {
+    const amount = (event.target as HTMLInputElement).value;
+
+    if (Number(amount) === 0) {
+      alert('Item has been deleted');
+      this.listCart = this.cartService.deleteCart(Number(id));
+      this.calculateTotalPrice();
+    } else {
+      this.listCart.forEach((ele) => {
+        if (ele.id === id) {
+          ele.amount = Number(amount);
+        }
+      });
+      this.listCart = this.cartService.updateListCart(this.listCart);
+      this.calculateTotalPrice();
+    }
+
     this.calculateTotalPrice();
   }
 
   calculateTotalPrice() {
-    this.totalPrice = this.cartProducts.reduce((accu: number, val: any) => {
-      return accu + val.price * Number(val.option);
-    }, 0);
-    this.totalPrice = Number(this.totalPrice.toFixed(2));
+    let total = 0;
+    this.listCart.forEach((ele) => {
+      total += ele.amount * ele.price;
+    });
+    return Math.round(total * 100) / 100;
   }
 
-  changeAmount(cartProductId: number, e: any) {
-    const selectedOption =
-      e.target.options[e.target.options.selectedIndex].value;
-    const cartIdx = this.cartProducts.findIndex(
-      (cart) => cart.id === cartProductId
-    );
-    cartIdx != -1 && this.cartProducts.length > 0
-      ? (this.cartProducts[cartIdx].option = selectedOption)
-      : null;
-    this.cartProducts.length > 0
-      ? this.productService.addProductToCart(this.cartProducts)
-      : null;
-    this.calculateTotalPrice();
-  }
-
-  submitForm(formValue: any) {
-    this.productService.clearProductInCart();
-    this.router.navigateByUrl(
-      `success/${formValue.fullName}/${this.totalPrice}`
-    );
+  onSubmit(data: { fullName: string; address: string; creditCard: string }) {
+    this.cartService.saveData({ ...data, total: this.calculateTotalPrice() });
+    this.router.navigate(['/confirmation']);
   }
 }

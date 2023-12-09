@@ -1,0 +1,26 @@
+.header {
+  height: 150px;
+  background-color: #33B5E5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: 40px;
+}
+
+.navbar {
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+}
+
+.product-link {
+  margin-right: 20px;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: underline;
+}

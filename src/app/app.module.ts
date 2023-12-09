@@ -1,41 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ProductComponent } from './components/product/product.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductItemComponent } from './components/product-item/product-item.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { CartComponent } from './components/cart/cart.component';
-import { HeaderComponent } from './components/header/header.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProductsService } from './services/products.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SuccessComponent } from './components/success/success.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { FormComponent } from './components/form/form.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent,
-    ProductComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    NavBarComponent,
     CartComponent,
-    HeaderComponent,
-    NavbarComponent,
-    SuccessComponent,
-    FormComponent,
+    ProductItemDetailComponent,
+    ConfirmationComponent,
   ],
-  providers: [],
-  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(),
   ],
+  providers: [ProductsService],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

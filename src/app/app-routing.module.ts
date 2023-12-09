@@ -1,16 +1,32 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsComponent } from './components/products/products.component';
-import { ProductComponent } from './components/product/product.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
 import { CartComponent } from './components/cart/cart.component';
-import { SuccessComponent } from './components/success/success.component';
+import { ProductItemDetailComponent } from './components/product-item-detail/product-item-detail.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
-  { path: 'products', component: ProductsComponent },
-  { path: 'products/:id', component: ProductComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'success/:fullName/:totalPrice', component: SuccessComponent },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'products',
+  },
+  {
+    path: 'products',
+    component: ProductListComponent,
+  },
+  {
+    path: 'products/:id',
+    component: ProductItemDetailComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
+  },
+  {
+    path: 'confirmation',
+    component: ConfirmationComponent,
+  },
 ];
 
 @NgModule({

@@ -1,26 +1,29 @@
-# MyStore
+# MyStore overview
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.18.
+- MyStore is Angular application that allows users to view a list of available products to purchase, add them to cart, and ultimately complete the checkout process.
+- -This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.8.
 
-## Development server
+## Install node module
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Download file zip.
+2. open file with vsCode.
+3. npm i
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `npm start` to start the searver.
+Use local server running in [Server](http://localhost:4200/)
 
-## Build
+## Feature
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Search all products
+- View product details by click on imgae can know some info like price, description, and photo.
+- Add products to the shopping cart in list products or detail
+- Remove products from the shopping cart in cart route
+- View the total cost of products in the shopping cart
+- Validate input forms info users.
+- When amount of product is zero. Remove product in cart
+- Complete the checkout process and view an order confirmation page
 
 ## Further help
 
