@@ -2,17 +2,12 @@
   <a [routerLink]="['/products', product.id]">
     <img class="product-image" [src]="product.url" />
   </a>
-
-  <div>
-    <h3>{{ product.name }}</h3>
-    <p>${{ product.price }}</p>
-    <select name="amount" class="select-input" [(ngModel)]="productAmount">
-      <option *ngFor="let amount of listAmount">
-        {{ amount }}
-      </option>
-    </select>
-  </div>
-  <div>
-    <button (click)="addProductToCart()">Add to cart</button>
-  </div>
+  <h3>{{ product.name }}</h3>
+  <p>${{ product.price }}</p>
+  <select name="amount" class="select-input" [(ngModel)]="productAmount">
+    <option *ngFor="let amount of listAmount">
+      {{ amount }}
+    </option>
+  </select>
+  <button (click)="addProductToCart()">Add to cart</button>
 </div>
